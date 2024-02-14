@@ -14,4 +14,4 @@ def post_list():
 def post_detail(question_id): # 함수의 파라미터로 전달
     # question = Question.query.get(question_id) # 모델에서 특정 번호(id)를 통해 값을 조회 
     question = Question.query.get_or_404(question_id)
-    return render_template("question/question_detail.html",  question = question)
+    return render_template("question/question_detail.html", question = question)
