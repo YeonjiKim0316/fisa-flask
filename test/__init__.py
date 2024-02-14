@@ -26,4 +26,9 @@ def create_app(): # 어플리케이션 팩토리 - 플라스크 서버가 실행
     test.register_blueprint(main_views.bp)
     test.register_blueprint(board_views.board)
     test.register_blueprint(answer_views.answer)
+    
+    # 커스텀 필터 사용
+    from test.filter import format_datetime
+    test.jinja_env.filters['date_time'] = format_datetime
+    
     return test
