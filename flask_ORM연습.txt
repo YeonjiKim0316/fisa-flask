@@ -92,6 +92,12 @@ sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
 >>> db.session.commit()     
 
 - 여러분의 이름을 question 테이블의 content 속성에 넣어서 1개 글을 작성하세요
-- filter를 사용해서 그 글을 가져와보세요
+- filter를 사용해서 그 글을 가져와보세요 v 
 - 글의 content를 '신짱구'로 변경해보세요
 - 그 글을 삭제해주세요
+
+
+    ### <% %> = {% %} 
+<%= %> = {{ }}
+<%-- --%> = {# ... #} 
+<jsp include: > = {% include 'header.html' %} ###
