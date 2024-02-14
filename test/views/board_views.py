@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect
 from ..models import Question, Answer
-from ..forms import QuestionForm
+from ..forms import QuestionForm, AnswerForm
 from datetime import datetime
 from test import db    
 
@@ -15,9 +15,10 @@ def post_list():
 # board/detail/1 2 3 4  -> question_detail.html로 각 글의 실제 세부내용을 전달하고 싶어요
 @board.route("/detail/<int:question_id>") # question_id 변수로 받은 값을 
 def post_detail(question_id): # 함수의 파라미터로 전달
-    # question = Question.query.get(question_id) # 모델에서 특정 번호(id)를 통해 값을 조회 
+    # question = Question.query.get(question_id) # 모델에서 특정 번호(id)를 통해 값을 조회
     question = Question.query.get_or_404(question_id)
-    return render_template("question/question_detail.html", question = question)
+    form = AnswerForm()
+    return render_template("question/question_detail.html", question = question,  question_id = question_id, form=form)
 
 
 @board.route('/create', methods=['GET', 'POST'])

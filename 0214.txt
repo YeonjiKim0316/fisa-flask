@@ -7,4 +7,14 @@ templates/question 폴더 아래에 위치하도록 디렉터리 구조를 변�
 변경합니다. 
 이후 컨트롤러가 제대로 동작하도록 만들어 주세요.
 
+
+# 답변에 관한 기능 작성
+    1) Model - models.py, forms.py 
+    2) View - views/answer_views.py
+            - /answer 로 시작하는 경로로 제어합니다.
+    3) Template - answer_form.html에 작성
+
 C:\ITStudy\05_web\deploy\data
+
+# 화면단에 답글이 있으면 post_detail에 출력
+# 혹시 생략할 수 있는 코드가 있는지 리팩토링
