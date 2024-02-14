@@ -6,3 +6,5 @@ templates/question 폴더 아래에 위치하도록 디렉터리 구조를 변�
 화면에 전달되는 question 관련 내용들의 변수명을 ques에서 question으로 
 변경합니다. 
 이후 컨트롤러가 제대로 동작하도록 만들어 주세요.
+
+C:\ITStudy\05_web\deploy\data
