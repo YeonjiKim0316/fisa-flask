@@ -36,6 +36,8 @@ def create():
        db.session.add(q)
        db.session.commit()
        return redirect( url_for( 'board.post_list' ) )
+       
+       
     #    return render_template( 'question/question_list.html' )
     
     return render_template('question/question_form.html', form=form)

@@ -22,7 +22,8 @@ def create_app(): # 어플리케이션 팩토리 - 플라스크 서버가 실행
     migrate.init_app(test, db)
 
     # 블루프린트
-    from .views import main_views, board_views  # views 폴더 및의 main_views.py 임포트
+    from .views import main_views, board_views, answer_views  # views 폴더 및의 main_views.py 임포트
     test.register_blueprint(main_views.bp)
     test.register_blueprint(board_views.board)
+    test.register_blueprint(answer_views.answer)
     return test
