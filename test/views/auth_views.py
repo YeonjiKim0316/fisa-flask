@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from test.forms import UserCreateForm, UserLoginForm
 from test.models import User
 from test import db
+import functools
 
 auth = Blueprint('auth', __name__, url_prefix="/auth")
 # __init__ 의 create_app 안에 등록
@@ -80,3 +81,14 @@ def load_logged_in_user():
 def logout():
     session.clear()
     return redirect( url_for('main.index') )
+
+# 우리가 직접 어노테이션을 만들어서
+# 접근이 불가한 페이지에 접근하면 로그인을 유도하도록 만든다
+def login_required(view):  # login_required(create)
+    @functools.wraps(view)
+    def warpped_views(*args, **kwargs):   # create/list, ?page=1
+        if g.user is None:
+            _next = request.url if request.method == 'GET' else ''
+            return redirect(url_for('auth.login', next=_next))
+        return view(*args, **kwargs)
+    return warpped_views

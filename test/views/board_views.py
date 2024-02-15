@@ -3,6 +3,7 @@ from ..models import Question, Answer
 from ..forms import QuestionForm, AnswerForm
 from datetime import datetime
 from test import db    
+from test.views.auth_views import login_required
 
 # 우리가 부를 이름, flask 프레임워크가 찾을 이름, 라우팅주소
 board = Blueprint('board', __name__, url_prefix="/board")
@@ -30,6 +31,7 @@ def post_detail(question_id): # 함수의 파라미터로 전달
 
 
 @board.route('/create', methods=['GET', 'POST'])
+@login_required
 def create():
     # 폼을 받는다
     form = QuestionForm()
