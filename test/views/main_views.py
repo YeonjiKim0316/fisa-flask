@@ -6,7 +6,7 @@ bp = Blueprint('main', __name__, url_prefix="/")
 
 # 첫번째 blueprint부터 찾기 때문에 board를 쓸 수 없게 됩니다 
 # @bp.route("/", defaults={"var":'', "var2":""}) # 여러개의 route 어노테이션을 하나의 메서드에 얹어서 쓸 수도 있다
-# @bp.route("/<var>/<var2>")  #대부분 uri는 str로 받기 때문에 str은 생략 # localhost:5000/yeonji  -> hello yeonji가 출력되도록 
+# @bp.route("/<var>/<var2>")  /짱구 #대부분 uri는 str로 받기 때문에 str은 생략 # localhost:5000/yeonji  -> hello yeonji가 출력되도록 
 @bp.route("/") 
 def index():
 

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect
+from flask import Blueprint, render_template, url_for, redirect, request
 from ..models import Question, Answer
 from ..forms import QuestionForm, AnswerForm
 from datetime import datetime
@@ -7,10 +7,18 @@ from test import db
 # 우리가 부를 이름, flask 프레임워크가 찾을 이름, 라우팅주소
 board = Blueprint('board', __name__, url_prefix="/board")
 
-@board.route("/list")
+@board.route("/list")   # /list   /list?page=1
 def post_list():
-    question_list = Question.query.all()
+    page = request.args.get('page', type=int, default=1)
+    question_list = Question.query.order_by(Question.create_date.desc())
+    question_list = question_list.paginate(page=page, per_page=10)
     return render_template("question/question_list.html", question_list=question_list)
+
+
+# @board.route("/list")
+# def post_list():
+    # question_list = Question.query.all()
+    # return render_template("question/question_list.html", question_list=question_list)
 
 # board/detail/1 2 3 4  -> question_detail.html로 각 글의 실제 세부내용을 전달하고 싶어요
 @board.route("/detail/<int:question_id>") # question_id 변수로 받은 값을 
