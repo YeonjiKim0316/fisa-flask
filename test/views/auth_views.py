@@ -48,11 +48,13 @@ def login():
     # 세션에 user_id라는 객체 생성
             session.clear()
             session['user_id'] = user.id
-            _next = request.args.get('next', '')
-            if _next:
-                return redirect(_next)
-            else:
-                return redirect(url_for('main.index'))
+            # _next = request.args.get('next', '')
+            # if _next:
+            #     return redirect(_next)
+            # else:
+            return redirect(url_for('main.index'))
+        # 에러메시지를 flash 한테 넘깁니다
+        # 문제가 있으면 그 문제를 form_errors.html로 보내버리는 역할 
         flash("error")
     return render_template('auth/login.html', form=form)
 
