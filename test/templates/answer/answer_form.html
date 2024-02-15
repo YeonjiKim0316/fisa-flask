@@ -6,6 +6,7 @@
     {# <form class="my-3" action="{{ url_for('board.create') }}"> #}
 	<form method="post" class="my-3" action="{{ url_for('answer.create', question_id=question_id) }}">
     <!-- 오류표시 Start -->
+    {{ g.user.username }}
     {% if form.errors %}
     <div class="alert alert-danger" role="alert">
         {% for field, errors in form.errors.items() %}

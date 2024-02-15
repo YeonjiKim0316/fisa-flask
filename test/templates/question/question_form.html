@@ -3,6 +3,7 @@
 <!-- 질문 등록 -->
 <div class="container">
     <h5 class="my-3 border-bottom pb-2">질문 올리기</h5>
+    {{ g.user.username }}
     {# <form class="my-3" action="{{ url_for('board.create') }}"> #}
 	<form method="post" class="my-3" action="{{ url_for('board.create') }}">
  

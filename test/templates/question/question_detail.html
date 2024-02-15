@@ -10,6 +10,9 @@
             <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2">
+                    {{ question.user.username }}
+                </div>
+                <div class="badge bg-light text-dark p-2">
                     {{ question.create_date | date_time }}
                 </div>
             </div>
@@ -24,6 +27,9 @@
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
             <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2">
+                    {{ answer.user.username }}
+                </div>
                 <div class="badge bg-light text-dark p-2">
                     {{ answer.create_date }}
                 </div>

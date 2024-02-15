@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, url_for
+from flask import Blueprint, redirect, render_template, url_for, g 
 from ..forms import AnswerForm
 from test import db
 from datetime import datetime
@@ -12,7 +12,10 @@ def create(question_id):
     form = AnswerForm()
     # 우리가 요청한 조건에 맞으면
     if form.validate_on_submit():
-        a = Answer(question_id=question_id, content=form.content.data, create_date=datetime.now())
+        a = Answer(question_id=question_id, \
+                   content=form.content.data, \
+                    create_date=datetime.now(),
+                    user=g.user)
         # DB에 저장
         db.session.add(a)   
         db.session.commit()  

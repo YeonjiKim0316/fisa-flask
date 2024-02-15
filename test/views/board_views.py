@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, request
+from flask import Blueprint, render_template, url_for, redirect, request, g
 from ..models import Question, Answer
 from ..forms import QuestionForm, AnswerForm
 from datetime import datetime
@@ -41,7 +41,8 @@ def create():
 
        q = Question(subject=form.subject.data, \
                    content=form.content.data, \
-                    create_date=datetime.now())                                                 
+                    create_date=datetime.now(),
+                    user_id=g.user.id)                                                 
        db.session.add(q)
        db.session.commit()
        return redirect( url_for( 'board.post_list' ) )

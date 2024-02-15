@@ -40,6 +40,7 @@ def login():
     form = UserLoginForm()
     if form.validate_on_submit() and request.method == 'POST':
         user = User.query.filter_by(username=form.username.data).first()
+        # print("-------------", user.password, form.password.data)
         if not user:
             flash("존재하지 않는 사용자입니다")
         elif not check_password_hash(user.password, form.password.data):
