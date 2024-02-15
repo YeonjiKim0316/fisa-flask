@@ -71,6 +71,7 @@ def modify(question_id):
     # 지금 글을 변경하려는 사람(로그인한사람)이 작성자인지 확인한다
     if g.user != question.user: 
         flash('수정권한이 없습니다')
+        return redirect(url_for('board.post_detail', question_id=question_id))
     # 아니면 flash로 에러메시지 전달
     # 맞으면, post로 값이 왔으면
     if request.method == 'POST':
