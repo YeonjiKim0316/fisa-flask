@@ -1,4 +1,5 @@
-from flask import Blueprint, request, redirect, render_template, flash, url_for, session
+from flask import Blueprint, request, redirect, render_template, flash, url_for, session, g
+from werkzeug.security import generate_password_hash, check_password_hash
 from test.forms import UserCreateForm, UserLoginForm
 from test.models import User
 from test import db
@@ -20,7 +21,7 @@ def signup():
         if not user:
             #2-1-1. db의 user 테이블에 값을 넣는다  
             user = User(username=form.username.data, \
-                        password=form.password1.data, \
+                        password=generate_password_hash(form.password1.data), \
                         email=form.email.data)                                                 
             db.session.add(user)
             db.session.commit()
@@ -41,24 +42,40 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if not user:
             flash("존재하지 않는 사용자입니다")
-        elif not (user.password == form.password.data):
+        elif not check_password_hash(user.password, form.password.data):
             flash("비밀번호가 틀렸습니다")
         # 비밀번호가 일치하는 경우 
         else:
     # 세션에 user_id라는 객체 생성
             session.clear()
             session['user_id'] = user.id
-            # _next = request.args.get('next', '')
-            # if _next:
-            #     return redirect(_next)
-            # else:
-            return redirect(url_for('main.index'))
+            _next = request.args.get('next', '')  # board/list 
+            if _next:
+                return redirect(_next)
+            else:
+                return redirect(url_for('main.index'))
         # 에러메시지를 flash 한테 넘깁니다
         # 문제가 있으면 그 문제를 form_errors.html로 보내버리는 역할 
         flash("error")
     return render_template('auth/login.html', form=form)
 
 
+# auth로 시작하는 블루프린트가 주소창에 가기 전에 무조건 실행되는 애너테이션
+@auth.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+         # 없으면 로그아웃 상태라는 것을 파악한다
+        g.user = None
+    else:
+        # @auth 를 통해서 라우팅을 하면 로그인이 되어있으면 로그인 사람의 모든 회원정보를 테이블에 가져오고
+        g.user = User.query.get(user_id)
+        print(g.user, g.user.username, g.user.password)
+
+
 
 # 로그아웃 - logout 
-# @auth.route("/logout")
+@auth.route("/logout")
+def logout():
+    session.clear()
+    return redirect( url_for('main.index') )
