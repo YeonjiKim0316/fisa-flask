@@ -1,3 +1,4 @@
+<!-- 필드오류 -->
 {% if form.errors %}
 <div class="alert alert-danger" role="alert">
     {% for field, errors in form.errors.items() %}
@@ -10,3 +11,10 @@
     {% endfor %}
 </div>
 {% endif %}
+
+<!-- flash 오류 -->
+{% for message in get_flashed_messages() %}
+<div class="alert alert-danger" role="alert">
+    {{ message }}
+</div>
+{% endfor %}

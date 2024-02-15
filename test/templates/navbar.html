@@ -9,8 +9,8 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url_for( 'main.index')}}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for( 'board.post_list' )}}">QnA</a></li>
                     <!-- <li class="nav-item">/<a class="nav-link" href="/board/list">QnA2</a></li> -->
-                    <li class="nav-item">/<a class="btn btn-light" href="/board/list">Login</a></li>
-                    <li class="nav-item">/<a class="btn btn-light" href="/board/list">SignUp</a></li>
+                    <li class="nav-item">/<a class="btn btn-light" href="{{ url_for('auth.login') }}">Login</a></li>
+                    <li class="nav-item">/<a class="btn btn-light" href="{{ url_for('auth.signup') }}">SignUp</a></li>
                 </ul>
 
             </div>

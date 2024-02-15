@@ -1,5 +1,5 @@
-from flask import Blueprint, request, redirect, render_template, flash, url_for
-from test.forms import UserCreateForm
+from flask import Blueprint, request, redirect, render_template, flash, url_for, session
+from test.forms import UserCreateForm, UserLoginForm
 from test.models import User
 from test import db
 
@@ -32,7 +32,31 @@ def signup():
     return render_template('auth/signup.html', form=form)
 
 # 로그인 - login
-# @auth.route("/login")
+# signup 함수와 비슷하게 동작
+@auth.route("/login", methods=['GET', 'POST'])
+def login():
+# post로 값이 들어오면 비밀번호 일치여부에 따라 로그인
+    form = UserLoginForm()
+    if form.validate_on_submit() and request.method == 'POST':
+        user = User.query.filter_by(username=form.username.data).first()
+        if not user:
+            flash("존재하지 않는 사용자입니다")
+        elif not (user.password == form.password.data):
+            flash("비밀번호가 틀렸습니다")
+        # 비밀번호가 일치하는 경우 
+        else:
+    # 세션에 user_id라는 객체 생성
+            session.clear()
+            session['user_id'] = user.id
+            _next = request.args.get('next', '')
+            if _next:
+                return redirect(_next)
+            else:
+                return redirect(url_for('main.index'))
+        flash("error")
+    return render_template('auth/login.html', form=form)
+
+
 
 # 로그아웃 - logout 
 # @auth.route("/logout")
