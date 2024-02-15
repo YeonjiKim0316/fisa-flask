@@ -16,6 +16,11 @@
                     {{ question.create_date | date_time }}
                 </div>
             </div>
+            <!-- 로그인 된 상태 (g.user), 작성자가 로그인한 사용자와 일치하는 상태-->
+            {% if g.user == question.user %}
+            <a class="btn btn-primary" href="{{ url_for('board.modify', question_id=question.id ) }}">수정</a>
+            <a class="btn btn-primary" href="{{ url_for('board.delete', question_id=question.id ) }}">삭제</a>
+            {% endif %}
         </div>
     </div>
        

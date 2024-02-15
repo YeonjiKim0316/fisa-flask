@@ -84,7 +84,7 @@ def logout():
 
 # 우리가 직접 어노테이션을 만들어서
 # 접근이 불가한 페이지에 접근하면 로그인을 유도하도록 만든다
-def login_required(view):  # login_required(create)
+def login_required(view):  # login_required(create) localhost:5000/board/create
     @functools.wraps(view)
     def warpped_views(*args, **kwargs):   # create/list, ?page=1
         if g.user is None:
