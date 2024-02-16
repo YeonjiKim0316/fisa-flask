@@ -1,0 +1,7 @@
+INFO 2024-02-16 14:51:56,706 main_views 20172 16340 INFO 수준의 메시지
+WARNING 2024-02-16 14:51:56,706 main_views 20172 16340 WARNING 수준의 메시지
+ERROR 2024-02-16 14:51:56,706 main_views 20172 16340 ERROR 수준의 메시지
+{levelname} {asctime} {module} {process:d} {thread:d} {message}'DEBUG 2024-02-16 14:54:42,129 main_views 12192 21252 DEBUG 수준의 메시지
+INFO 2024-02-16 14:54:42,129 main_views 12192 21252 INFO 수준의 메시지
+WARNING 2024-02-16 14:54:42,129 main_views 12192 21252 WARNING 수준의 메시지
+ERROR 2024-02-16 14:54:42,129 main_views 12192 21252 ERROR 수준의 메시지

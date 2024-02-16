@@ -9,3 +9,7 @@ myproject/
 .gitignore
 .dockerignore
 .env
+
+*.txt
+
+!requirements.txt

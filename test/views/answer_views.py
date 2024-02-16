@@ -7,7 +7,7 @@ from test.views.auth_views import login_required
 
 answer = Blueprint('answer', __name__, url_prefix="/answer")
 
-@answer.route("/create/<int:question_id>", methods=["POST"])
+@answer.route("/create/<int:question_id>", methods=["GET", "POST"])
 def create(question_id):
     # AnswerForm으로 화면에서 받은 데이터를
     form = AnswerForm()
@@ -19,10 +19,11 @@ def create(question_id):
                     create_date=datetime.now(),
                     user=g.user)
         # DB에 저장
+        question.answer_set.append(a)
         db.session.add(a)   
         db.session.commit()  
-    # 후 원래 페이지로 redirect ('submit.html')
-        return  render_template('question/question_detail.html', question=question, form=form)
+        # board 불리우는 board_views.py의 post_detail 함수를 호출하는데 question_id를 함께 전달
+        return redirect(url_for('board.post_detail', question_id=question_id))
     # 빈 화면으로 넘기기
     return render_template('question/question_detail.html', question=question, form=form)
 
@@ -43,7 +44,7 @@ def modify(answer_id):
         if form.validate_on_submit():
             form.populate_obj(answer) # 화면에 원래 db에서 꺼낸 값을 변경해서 뿌림
             db.session.commit()
-            return redirect(url_for('board.post_detail', question_id=question_id))
+            return redirect('{}#answer_{}'.format(url_for('board.detail', question_id=question_id), answer.id))
             # 값을 수정하여 다시 session에 commit
     else: # GET으로 요청이 왔을 때
         form = AnswerForm(obj=answer)

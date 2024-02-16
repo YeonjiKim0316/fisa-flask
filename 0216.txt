@@ -9,4 +9,10 @@
 
 # form_errors.html을 include하고 있지 않은 화면들에 대해 화면 추가
  -
- -
+ 
+
+# 1. docker hub에 id/flask_app:1 로 업로드
+
+# 2. aws 서버에 ec2 컨테이너 만들어서 docker run - env 파일은 손수 작성하셔야 할 겁니다 
+
+docker run --env-file=.env -d -p 80:80 flask_app

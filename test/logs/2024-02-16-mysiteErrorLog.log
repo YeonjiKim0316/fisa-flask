@@ -1,0 +1,2 @@
+ERROR ERROR 수준의 메시지
+{levelname} {asctime} {module} {process:d} {thread:d} {message}'
