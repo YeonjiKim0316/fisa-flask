@@ -6,7 +6,7 @@
     {{ g.user.username }}
     {# <form class="my-3" action="{{ url_for('board.create') }}"> #}
 	{# <form method="post" class="my-3" action="{{ url_for('board.create') }}"> #}
-    <form method="post">
+    <form method="post" class="my-3">
         {% include 'form_errors.html' %}
         {{ form.csrf_token }}
 

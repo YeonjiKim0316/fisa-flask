@@ -5,20 +5,10 @@
     <h5 class="my-3 border-bottom pb-2">답변 올리기</h5>
     {# <form class="my-3" action="{{ url_for('board.create') }}"> #}
 	<form method="post" class="my-3" action="{{ url_for('answer.create', question_id=question_id) }}">
+        {# <form method="post" class="my-3">  #}
     <!-- 오류표시 Start -->
     {{ g.user.username }}
-    {% if form.errors %}
-    <div class="alert alert-danger" role="alert">
-        {% for field, errors in form.errors.items() %}
-        <strong>{{ form[field].label }}</strong>
-        <ul>
-            {% for error in errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-        {% endfor %}
-    </div>
-    {% endif %}
+    {% include 'form_errors.html' %}
     <!-- 오류표시 End -->
         {{ form.csrf_token }}
 
