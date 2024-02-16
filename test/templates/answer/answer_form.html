@@ -3,10 +3,7 @@
 <!-- 답변 등록 -->
 <div class="container">
     <h5 class="my-3 border-bottom pb-2">답변 올리기</h5>
-    {# <form class="my-3" action="{{ url_for('board.create') }}"> #}
-    
-	{# <form method="post" class="my-3" action="{{ url_for('answer.create', question_id=question_id) }}"> #}
-    {% if modify %}
+    {% if modify %} 
         <form method="post" class="my-3" action="{{ url_for('answer.modify', answer_id=answer_id) }}">
     {% else %}
         <form method="post" class="my-3" action="{{ url_for('answer.create', question_id=question_id) }}">

@@ -49,7 +49,7 @@ def modify(answer_id):
     else: # GET으로 요청이 왔을 때
         form = AnswerForm(obj=answer)
     # modify라는 변수 사용하여 있으면 answer.modify로 동작하도록 변경
-    return render_template('answer/answer_form.html', form=form, answer_id=answer_id, question_id=question_id, modify=True)
+    return render_template('answer/answer_form.html', form=form, answer_id=answer_id, modify=True)
     # 원래 화면으로 redirect
 
 
