@@ -1,12 +1,21 @@
 import os
 from dotenv import load_dotenv
 
-# .env 안에 있는 환경변수들을 키=밸류로 엔터 단위대로 읽어오게 됩니다
+# .env 불러오기
 load_dotenv()
 
-mySecretKey=os.environ.get('SECRET_KEY')
-BASE_DIR=os.path.dirname(__file__)
+myDBid = os.environ.get('DBid')
+myDBpw = os.environ.get('DBpw')
+mySecretKey = os.environ.get('FLASK_SECRET_KEY')
 
-SQLALCHEMY_DATABASE_URI="sqlite:///{}".format(os.path.join(BASE_DIR, "test.db"))
-SQLALCHEMY_TRACK_MODIFICATIONS=False
-SECRET_KEY = mySecretKey
+# db를 저장할 폴더/파일이름 
+BASE_DIR = os.path.dirname(__file__)
+
+# SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(os.path.join(BASE_DIR, 'test.db'))
+SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{myDBid}:{myDBpw}@woori-fisa2.cfnz7hfzq9bn.ap-northeast-2.rds.amazonaws.com/yeonji"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SECRET_KEY= mySecretKey
+
+# 또한 디버그모드를 False로 주고 ALLOWED_HOSTS를 '*'로 변경해줍니다.
+DEBUG = False
+ALLOWED_HOSTS = ['*'] # 모든 ip에서 접근 가능하도록 설정

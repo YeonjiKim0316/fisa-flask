@@ -72,7 +72,7 @@ def load_logged_in_user():
     else:
         # @auth 를 통해서 라우팅을 하면 로그인이 되어있으면 로그인 사람의 모든 회원정보를 테이블에 가져오고
         g.user = User.query.get(user_id)
-        print(g.user, g.user.username, g.user.password)
+        # print(g.user, g.user.username, g.user.password)
 
 
 
