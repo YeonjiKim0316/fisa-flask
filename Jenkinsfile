@@ -26,12 +26,12 @@ node {
             sshagent(credentials: ['ec2-flask-container']) {
                 sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@13.125.241.151')
                 sh(script: 'if [ "$(sudo docker ps -q | wc -l)" -gt 1 ]; then "sudo docker rm -f \$(sudo docker ps -aq)"; fi')
-                sh(script: 'ssh ubuntu@13.125.241.151 "sudo docker run --name docker_flask --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t \${DOCKER_USER_ID}/flask_app2:\${BUILD_NUMBER}"')
+                sh(script: 'ssh ubuntu@13.125.241.151 "sudo docker run --name docker_flask --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t \${DOCKER_USER_ID}/flask_app3:\${BUILD_NUMBER}"')
         }
     }
 
     stage('Cleaning up') { 
-              sh "sudo docker rmi ${DOCKER_USER_ID}/flask_app2:${BUILD_NUMBER}" // sudo docker image 제거
+              sh "sudo docker rmi ${DOCKER_USER_ID}/flask_app3:${BUILD_NUMBER}" // sudo docker image 제거
       } 
     }
   }
