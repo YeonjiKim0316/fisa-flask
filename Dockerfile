@@ -31,6 +31,8 @@ RUN mv /entrypoint.sh /uwsgi-nginx-entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+COPY nginx.conf /etc/nginx/nginx.conf
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Run the start script provided by the parent image tiangolo/uwsgi-nginx.
