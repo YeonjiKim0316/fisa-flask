@@ -25,10 +25,10 @@ node {
       
       stage('Deploy') {
             sshagent(credentials: ['ec2-flask-container']) {
-                sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@13.209.15.50')
+                sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@13.125.231.35')
                 sh(script: 'if [ "\$(sudo docker ps -q | wc -l)" -gt 1 ]; then sudo docker rm -f \$(sudo docker ps -aq); fi')
                 sh(script: 'sudo docker image prune -a')
-                sh(script: 'ssh ubuntu@13.209.15.50 "sudo docker run --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t \${DOCKER_USER_ID}/flask_app3:\${BUILD_NUMBER}"')
+                sh(script: 'ssh ubuntu@13.125.231.35 "sudo docker run --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t \${DOCKER_USER_ID}/flask_app3:\${BUILD_NUMBER}"')
         }
     }
 
