@@ -5,6 +5,7 @@ LABEL maintainer="atangi@naver.com"
 
 # Install requirements
 COPY requirements.txt /tmp/requirements.txt
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 # URL under which static (not modified by Python) files will be requested
