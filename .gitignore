@@ -1,9 +1,0 @@
-# 실행 중 생겨난 파일들
-__pycache__/
-migrations/
-myproject/
-
-ai_tutor_accessKeys.csv
-
-.gitignore
-.env
