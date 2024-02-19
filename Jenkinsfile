@@ -5,7 +5,7 @@ node {
         passwordVariable: 'DOCKER_USER_PASSWORD']]) 
     { 
      stage('Pull') {
-           git branch: 'main', url: 'https://github.com/YeonjiKim0316/fisa-flask/'
+           git branch: 'main', credentialsId: 'github-private', url: 'https://github.com/YeonjiKim0316/fisa-flask/'
         }
         
 
