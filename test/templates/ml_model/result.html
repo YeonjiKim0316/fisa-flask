@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>분석 결과</h1>
-<img src="이미지주소">
+<img src="{{ url_for('static', filename='uploads/'+filename )}}">
 <p>
     {{Class}}, {{ConfidenceScore}}
 </p>
