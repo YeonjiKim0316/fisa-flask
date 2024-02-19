@@ -18,12 +18,13 @@ ENV STATIC_PATH /app/static
 # ENV STATIC_INDEX 1
 ENV STATIC_INDEX 0
 ENV NGINX_MAX_UPLOAD 20m
+ENV NGINX_CLIENT_MAX_BODY_SIZE 20m
 # Add demo app
 COPY . /app
 WORKDIR /app
 
 # Make /app/* available to be imported by Python globally to better support several use cases like Alembic migrations.
-ENV PYTHONPATH=/app
+ENV PYTHONPATH=/test
 
 # Move the base entrypoint to reuse it
 RUN mv /entrypoint.sh /uwsgi-nginx-entrypoint.sh
