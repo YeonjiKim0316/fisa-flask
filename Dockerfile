@@ -8,7 +8,7 @@ COPY requirements.txt /tmp/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
-#COPY nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 # URL under which static (not modified by Python) files will be requested
 # They will be served by Nginx directly, without being handled by uWSGI
 ENV STATIC_URL /static
