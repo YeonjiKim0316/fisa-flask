@@ -9,10 +9,10 @@ np.set_printoptions(suppress=True)
 filepath = os.path.join(os.path.abspath(os.path.dirname(__file__)))
 print(filepath)
 # Load the model
-model = load_model(f"{filepath}\keras_model.h5", compile=False)
+model = load_model(f"{filepath}/keras_model.h5", compile=False)
 
 # Load the labels
-class_names = open(f"{filepath}\labels.txt", "r").readlines()
+class_names = open(f"{filepath}/labels.txt", "r").readlines()
 
 def classify_img(img_src):
 # Create the array of the right shape to feed into the keras model
