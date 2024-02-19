@@ -12,13 +12,11 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 # They will be served by Nginx directly, without being handled by uWSGI
 ENV STATIC_URL /static
 # Absolute path in where the static files wil be
-ENV STATIC_PATH /app/static
+ENV STATIC_PATH /app/test/static
 
 # If STATIC_INDEX is 1, serve / with /static/index.html directly (or the static URL configured)
 # ENV STATIC_INDEX 1
 ENV STATIC_INDEX 0
-ENV NGINX_MAX_UPLOAD 20m
-ENV NGINX_CLIENT_MAX_BODY_SIZE 20m
 # Add demo app
 COPY . /app
 WORKDIR /app
