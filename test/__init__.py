@@ -99,11 +99,12 @@ def create_app():
 
         # 블루프린트
 
-    from .views import main_views, board_views, answer_views, auth_views  # views 폴더 및의 main_views.py 임포트
+    from .views import main_views, board_views, answer_views, auth_views, classifier_views  # views 폴더 및의 main_views.py 임포트
     test.register_blueprint(main_views.bp)
     test.register_blueprint(board_views.board)
     test.register_blueprint(answer_views.answer)
     test.register_blueprint(auth_views.auth)
+    test.register_blueprint(classifier_views.classifier)
     
     # 커스텀 필터 사용
     from test.filter import format_datetime
