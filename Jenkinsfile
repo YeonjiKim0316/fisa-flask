@@ -10,7 +10,7 @@ node {
         
 
       stage('Build') {
-            sh(script: 'sudo docker build -t flask_app3 .')
+             sh(script: '''sudo docker build -t flask_app3 .''')
         }
 
       stage('Tag') {
