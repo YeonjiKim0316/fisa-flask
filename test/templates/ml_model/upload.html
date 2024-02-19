@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
+<center>
+    <form method="POST" enctype="multipart/form-data" class="btn btn-dark">
+        <input type="file" name="file" class="btn btn-light">
         <br>
-        <input type="submit" value="업로드">
+        <input type="submit" value="업로드" class="btn btn-light">
     </form>
-
+</center>
 {% endblock %}

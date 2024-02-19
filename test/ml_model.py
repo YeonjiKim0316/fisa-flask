@@ -42,7 +42,7 @@ def classify_img(img_src):
     class_name = class_names[index] # 그 인덱스의 label.txt의 줄번호(방번호)를 찾습니다
     confidence_score = prediction[0][index]  # 가장 큰 값이 있는 추론 결과
 
-    result = {"Class:": class_name[2:], "ConfidenceScore:": confidence_score}
+    result = {"Class": class_name[2:], "ConfidenceScore": confidence_score}
 # Print prediction and confidence score
 # print("Class:", class_name[2:], end="") # ["0 mask", "1 nomask"] -> "0 "을 제외한 그 다음 글자들을 출력합니다 
 # print("Confidence Score:", confidence_score) # 추론 결과도 출력합니다
