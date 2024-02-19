@@ -4,7 +4,9 @@
 
 <center>
 <h1>분석 결과</h1>
-<img src="{{ url_for('static', filename='uploads/'+filename )}}">
+{#<img src="{{ url_for('static', filename='uploads/'+filename )}}">#}
+<img src="{{ filename }}">
+
 <p>
     {{result.Class}}, {{result.ConfidenceScore}}
 </p>
