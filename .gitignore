@@ -3,6 +3,7 @@ __pycache__/
 migrations/
 myproject/
 
+ai_tutor_accessKeys.csv
 
 .gitignore
 .env

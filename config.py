@@ -7,6 +7,11 @@ load_dotenv()
 myDBid = os.environ.get('DBid')
 myDBpw = os.environ.get('DBpw')
 mySecretKey = os.environ.get('FLASK_SECRET_KEY')
+AWS_ACCESS_KEY= os.environ.get('AWS_ACCESS_KEY')
+AWS_SECRET_KEY= os.environ.get('AWS_SECRET_KEY')
+BUCKET_NAME= os.environ.get('BUCKET_NAME')
+AWS_STORAGE_OVERRIDE= os.environ.get('AWS_STORAGE_OVERRIDE')
+AWS_DEFAULT_REGION= os.environ.get('AWS_DEFAULT_REGION')
 
 # db를 저장할 폴더/파일이름 
 BASE_DIR = os.path.dirname(__file__)

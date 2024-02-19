@@ -12,4 +12,6 @@ myproject/
 
 *.txt
 
+ai_tutor_accessKeys.csv
+
 !requirements.txt
