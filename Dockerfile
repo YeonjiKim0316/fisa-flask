@@ -17,7 +17,7 @@ ENV STATIC_PATH /app/static
 # If STATIC_INDEX is 1, serve / with /static/index.html directly (or the static URL configured)
 # ENV STATIC_INDEX 1
 ENV STATIC_INDEX 0
-ENV NGINX_MAX_UPLOAD 3m
+ENV NGINX_MAX_UPLOAD 20m
 # Add demo app
 COPY . /app
 WORKDIR /app
@@ -31,7 +31,7 @@ RUN mv /entrypoint.sh /uwsgi-nginx-entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-COPY test.conf /etc/nginx/conf.d/
+# COPY test.conf /etc/nginx/conf.d/
 
 ENTRYPOINT ["/entrypoint.sh"]
 
