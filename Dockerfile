@@ -31,7 +31,7 @@ RUN mv /entrypoint.sh /uwsgi-nginx-entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY test.conf /etc/nginx/conf.d/
 
 ENTRYPOINT ["/entrypoint.sh"]
 
