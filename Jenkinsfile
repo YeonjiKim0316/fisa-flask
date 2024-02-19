@@ -23,14 +23,17 @@ node {
             sh(script: 'sudo docker push ${DOCKER_USER_ID}/flask_app3:${BUILD_NUMBER}') 
         }
       
-      stage('Deploy') {
-            sshagent(credentials: ['ec2-flask-container']) {
-                sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@13.125.231.35')
-                sh(script: 'if [ "\$(sudo docker ps -q | wc -l)" -gt 1 ]; then sudo docker rm -f \$(sudo docker ps -aq); fi')
-                sh(script: 'sudo docker image prune -a')
-                sh(script: 'ssh ubuntu@13.125.231.35 "sudo docker run --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t \${DOCKER_USER_ID}/flask_app3:\${BUILD_NUMBER}"')
+    stage('Deploy') {
+        sshagent(credentials: ['ec2-flask-container']) {
+            sh(script: '''
+                ssh -o StrictHostKeyChecking=no ubuntu@13.125.231.35 '
+                    if [ "$(sudo docker ps -q | wc -l)" -gt 1 ]; then sudo docker rm -f $(sudo docker ps -aq); fi;
+                    yes | sudo docker image prune -a
+                    sudo docker run --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t ${DOCKER_USER_ID}/flask_app3:${BUILD_NUMBER}
+                '
+            ''')
+            }
         }
-    }
 
     stage('Cleaning up') { 
               sh "sudo docker rmi ${DOCKER_USER_ID}/flask_app3:${BUILD_NUMBER}" // sudo docker image 제거
