@@ -10,7 +10,7 @@ node {
         
 
       stage('Build') {
-            sh(script: 'sudo docker image prune -a')
+            sh(script: '''yes | sudo docker image prune -a''')
             sh(script: '''sudo docker build -t flask_app3 .''')
         }
 
@@ -23,7 +23,7 @@ node {
             sh(script: 'sudo docker push ${DOCKER_USER_ID}/flask_app3:${BUILD_NUMBER}') 
         }
       
-    stage('Deploy') {
+      stage('Deploy') {
         sshagent(credentials: ['ec2-flask-container']) {
             sh(script: '''
                 ssh -o StrictHostKeyChecking=no ubuntu@13.125.231.35 '
@@ -32,8 +32,8 @@ node {
                     sudo docker run --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t ${DOCKER_USER_ID}/flask_app3:${BUILD_NUMBER}
                 '
             ''')
-            }
         }
+    }
 
     stage('Cleaning up') { 
               sh "sudo docker rmi ${DOCKER_USER_ID}/flask_app3:${BUILD_NUMBER}" // sudo docker image 제거
