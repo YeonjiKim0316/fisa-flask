@@ -29,7 +29,7 @@ node {
             sh(script: '''
                 ssh -o StrictHostKeyChecking=no ubuntu@3.34.48.226  '
                     if [ "$(sudo docker ps -q | wc -l)" -gt 1 ]; then sudo docker rm -f $(sudo docker ps -aq); fi;
-                    yes | sudo docker image prune -a
+                    yes | sudo docker image prune -a;
                     sudo docker run --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t ${DOCKER_USER_ID}/flask_app4:${BUILD_NUMBER}
                 '
             ''')
