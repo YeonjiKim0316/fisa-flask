@@ -24,14 +24,12 @@ node {
             sh(script: 'sudo docker push ${DOCKER_USER_ID}/flask_app4:${BUILD_NUMBER}') 
         }
       
-      stage('Deploy') {
-        sshagent(credentials: ['flask-ec2-server']) {
-            sh(script: '''
-                ssh -o StrictHostKeyChecking=no ubuntu@3.34.48.226  '
-                    if [ "$(sudo docker ps -q | wc -l)" -gt 1 ]; then sudo docker rm -f $(sudo docker ps -aq); fi;
-                    sudo docker run --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t ${DOCKER_USER_ID}/flask_app4:${BUILD_NUMBER}
-                '
-            ''')
+stage('Deploy') {
+            sshagent(credentials: ['flask-ec2-server']) {
+                sh(script: 'ssh -o StrictHostKeyChecking=no ubuntu@3.34.48.226')
+                sh(script: 'if [ "\$(sudo docker ps -q | wc -l)" -gt 1 ]; then sudo docker rm -f \$(sudo docker ps -aq); fi')
+                sh(script: 'yes|sudo docker image prune -a')
+                sh(script: 'ssh ubuntu@3.34.48.226 "sudo docker run --env-file .env -e TZ=Asia/Seoul -p 80:80 -d -t \${DOCKER_USER_ID}/flask_app3:\${BUILD_NUMBER}"')
         }
     }
 
