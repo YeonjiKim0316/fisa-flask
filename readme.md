@@ -1,1 +1,2 @@
-for Jenkins test
+for Jenkins test  
+new line
