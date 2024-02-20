@@ -24,7 +24,7 @@ node {
         }
       
       stage('Deploy') {
-        sshagent(credentials: ['ec2-flask-container']) {
+        sshagent(credentials: ['ec2-flask-server']) {
             sh(script: '''
                 ssh -o StrictHostKeyChecking=no ubuntu@13.125.231.35 '
                     if [ "$(sudo docker ps -q | wc -l)" -gt 1 ]; then sudo docker rm -f $(sudo docker ps -aq); fi;
